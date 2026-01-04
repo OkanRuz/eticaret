@@ -14,3 +14,14 @@ def shop():
         ("Mouse", 400)
     ]
     return render_template("shop.html", products=products)
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        # Şimdilik kontrol yok, direkt shop'a gönderiyoruz
+        return redirect("/shop")
+
+    return render_template("login.html")

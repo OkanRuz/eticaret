@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Giriş Yap</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Giriş Yap</h1>
+
+<form method="post">
+    <input type="text" name="username" placeholder="Kullanıcı adı" required>
+    <br><br>
+    <input type="password" name="password" placeholder="Şifre" required>
+    <br><br>
+    <button type="submit">Giriş</button>
+</form>
+
+</body>
+</html>
