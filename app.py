@@ -1,10 +1,12 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
+import os
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
 
 @app.route("/shop")
 def shop():
@@ -15,13 +17,15 @@ def shop():
     ]
     return render_template("shop.html", products=products)
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-
-        # Şimdilik kontrol yok, direkt shop'a gönderiyoruz
+        # şimdilik kontrol yok
         return redirect("/shop")
-
     return render_template("login.html")
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
