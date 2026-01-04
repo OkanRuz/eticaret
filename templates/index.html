@@ -2,10 +2,21 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>E-Ticaret</title>
+    <title>E-Ticaret Sitesi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+
+<header>
     <h1>E-Ticaret Sitesi</h1>
-    <p>Render üzerinde çalışıyor 🎉</p>
+</header>
+
+<div class="container">
+    <div class="card">
+        <p>Render üzerinde çalışıyor 🎉</p>
+        <a href="/shop">Mağazaya Git →</a>
+    </div>
+</div>
+
 </body>
 </html>
