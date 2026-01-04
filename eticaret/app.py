@@ -29,3 +29,27 @@ def shop():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route("/add/<int:id>")
+def add_cart(id):
+    db = get_db()
+    cur = db.cursor()
+    cur.execute("INSERT INTO cart (user_id, product_id) VALUES (1,?)", (id,))
+    db.commit()
+    return redirect("/shop")
+
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    if request.method == "POST":
+        name = request.form["name"]
+        price = request.form["price"]
+        db = get_db()
+        cur = db.cursor()
+        cur.execute("INSERT INTO products (name, price) VALUES (?,?)", (name, price))
+        db.commit()
+    return render_template("admin.html")
+
+if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
