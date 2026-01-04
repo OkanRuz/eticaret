@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mağaza</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>Ürünler</h1>
+</header>
+
+<div class="container">
+    {% for name, price in products %}
+    <div class="card">
+        <h3>{{ name }}</h3>
+        <p>Fiyat: {{ price }} ₺</p>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
