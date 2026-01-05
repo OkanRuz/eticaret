@@ -1,30 +1,20 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask
+from app.auth import auth_bp
+from app.shop import shop_bp
+from app.admin import admin_bp
 import os
 
-app = Flask(__name__)
+def create_app():
+    app = Flask(__name__)
+    app.secret_key = "super-secret-key"
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(shop_bp)
+    app.register_blueprint(admin_bp)
 
+    return app
 
-@app.route("/shop")
-def shop():
-    products = [
-        ("Kulaklık", 500),
-        ("Klavye", 900),
-        ("Mouse", 400)
-    ]
-    return render_template("shop.html", products=products)
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        # şimdilik kontrol yok
-        return redirect("/shop")
-    return render_template("login.html")
-
+app = create_app()
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
